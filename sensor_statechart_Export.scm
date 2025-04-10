@@ -20,15 +20,15 @@
             "text": "sensor_statechart Export"
           },
           "specification": {
-            "text": "@EventDriven\n@SuperSteps(no)\n\ninterface: \n    in event EV_BTN_UP\n    in event EV_BTN_DOWN\n    var tick : integer\n    const DEL_BTN_XX_MAX = 50\n    "
+            "text": "@EventDriven\n@SuperSteps(no)\n\ninternal:\n    const DEL_BTN_XX_MAX : integer = 50\n    var tick : integer = DEL_BTN_XX_MAX\n\ninterface: \n    in event EV_BTN_XX_UP\n    in event EV_BTN_XX_DOWN"
           }
         }
       },
       {
         "type": "State",
         "position": {
-          "x": 34,
-          "y": 237
+          "x": 24.96875,
+          "y": 185
         },
         "size": {
           "width": 143.03125,
@@ -39,16 +39,13 @@
         "embedable": true,
         "linkable": true,
         "id": "b795c847-d129-4d70-9faa-f71216e6b172",
-        "z": 63,
+        "z": 99,
         "embeds": [
           "5e7523ef-2144-4260-bf9d-a3e3379362c5"
         ],
         "attrs": {
           "name": {
-            "text": "ST_BTN_RISING"
-          },
-          "specification": {
-            "text": "entry / tick--"
+            "text": "ST_BTN_XX_RISING"
           }
         }
       },
@@ -91,17 +88,20 @@
           {
             "attrs": {
               "text": {
-                "text": "EV_BTN_UP [tick > 0]"
+                "text": "[tick > 0] / tick--"
               }
             },
             "position": {
-              "distance": 0.4719340252425118,
-              "offset": 33.62510406948433,
+              "distance": 0.6281005163049285,
+              "offset": 75.36124801635742,
               "angle": 0
             }
           },
           {
             "attrs": {
+              "root": {
+                "opacity": 1
+              },
               "label": {
                 "text": "2"
               }
@@ -115,12 +115,12 @@
           }
         ],
         "id": "5e7523ef-2144-4260-bf9d-a3e3379362c5",
-        "z": 64,
+        "z": 100,
         "parent": "b795c847-d129-4d70-9faa-f71216e6b172",
         "vertices": [
           {
-            "x": -25,
-            "y": 202
+            "x": -25.03125,
+            "y": 155
           }
         ],
         "attrs": {}
@@ -128,41 +128,49 @@
       {
         "type": "State",
         "position": {
-          "x": 149.5,
-          "y": 10
+          "x": 443,
+          "y": 184.8046875
         },
         "size": {
-          "width": 243.84375,
-          "height": 60
+          "width": 135.828125,
+          "height": 60.390625
         },
         "angle": 0,
         "fixedRatio": false,
         "embedable": true,
         "linkable": true,
-        "id": "36b8548a-74b1-4925-ae23-291c03231ee6",
-        "z": 73,
-        "embeds": [],
+        "id": "db372094-acc6-467b-b44d-495606208445",
+        "z": 101,
+        "embeds": [
+          "075db3fa-db1c-40c8-aac2-fd477b7afe93"
+        ],
         "attrs": {
           "name": {
-            "text": "ST_BUTTON_UP"
-          },
-          "specification": {
-            "text": "entry / tick = DEL_BTN_XX_MAX"
+            "text": "ST_BTN_XX_FALLING"
           }
         }
       },
       {
         "type": "Transition",
         "source": {
-          "id": "b795c847-d129-4d70-9faa-f71216e6b172"
-        },
-        "target": {
-          "id": "36b8548a-74b1-4925-ae23-291c03231ee6",
+          "id": "db372094-acc6-467b-b44d-495606208445",
           "anchor": {
             "name": "topLeft",
             "args": {
-              "dx": 4.2109375,
-              "dy": 27,
+              "dx": 125,
+              "dy": 50,
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "target": {
+          "id": "db372094-acc6-467b-b44d-495606208445",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": 93.7734375,
+              "dy": 29.90386962890625,
               "rotate": true
             }
           },
@@ -181,17 +189,194 @@
           {
             "attrs": {
               "text": {
-                "text": "EV_BTN_UP [tick == 0]"
+                "text": "[tick > 0] / tick--"
               }
             },
             "position": {
-              "distance": 0.621892373208694,
-              "offset": -86,
+              "distance": 0.615251442267856,
+              "offset": 81.40777587890625,
               "angle": 0
             }
           },
           {
             "attrs": {
+              "root": {
+                "opacity": 1
+              },
+              "label": {
+                "text": "2"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "075db3fa-db1c-40c8-aac2-fd477b7afe93",
+        "z": 102,
+        "vertices": [
+          {
+            "x": 633,
+            "y": 281
+          }
+        ],
+        "parent": "db372094-acc6-467b-b44d-495606208445",
+        "attrs": {}
+      },
+      {
+        "type": "State",
+        "position": {
+          "x": 168,
+          "y": 375
+        },
+        "size": {
+          "width": 243.84375,
+          "height": 60
+        },
+        "angle": 0,
+        "fixedRatio": false,
+        "embedable": true,
+        "linkable": true,
+        "id": "7a84f0da-87ce-4405-a2cf-11fd887330a4",
+        "z": 107,
+        "embeds": [],
+        "attrs": {
+          "name": {
+            "text": "ST_BTN_XX_DOWN"
+          }
+        }
+      },
+      {
+        "type": "Transition",
+        "source": {
+          "id": "b795c847-d129-4d70-9faa-f71216e6b172",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": 141.03125,
+              "dy": 14,
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "target": {
+          "id": "7a84f0da-87ce-4405-a2cf-11fd887330a4",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": 24,
+              "dy": 4,
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "router": {
+          "name": "orthogonal",
+          "args": {
+            "padding": 8
+          }
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "EV_BTN_XX_DOWN [tick == 0]"
+              }
+            },
+            "position": {
+              "distance": 0.6771747239924674,
+              "offset": -88.59149169921875,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "root": {
+                "opacity": 1
+              },
+              "label": {
+                "text": "3"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "b36738f4-43e5-4223-8d25-506bc0081263",
+        "z": 108,
+        "vertices": [
+          {
+            "x": 192,
+            "y": 199
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "type": "Transition",
+        "source": {
+          "id": "7a84f0da-87ce-4405-a2cf-11fd887330a4",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": 1,
+              "dy": 47,
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "target": {
+          "id": "b795c847-d129-4d70-9faa-f71216e6b172",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": 49.03125,
+              "dy": 55,
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "router": {
+          "name": "orthogonal",
+          "args": {
+            "padding": 8
+          }
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "EV_BTN_XX_UP / tick = DEL_BTN_XX_MAX"
+              }
+            },
+            "position": {
+              "distance": 0.3474443742605923,
+              "offset": -36.24260312930898,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "root": {
+                "opacity": 1
+              },
               "label": {
                 "text": "1"
               }
@@ -204,12 +389,87 @@
             "attrs": {}
           }
         ],
-        "id": "089b5f17-a0ab-48c4-9cbb-ae4eaf1e47a9",
-        "z": 74,
+        "id": "ee831f28-7ed9-4cbf-8fad-12876f782017",
+        "z": 108,
         "vertices": [
           {
-            "x": 75,
-            "y": 58
+            "x": 74,
+            "y": 412
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "type": "Transition",
+        "source": {
+          "id": "db372094-acc6-467b-b44d-495606208445",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": 76,
+              "dy": 56,
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "target": {
+          "id": "7a84f0da-87ce-4405-a2cf-11fd887330a4",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": 94.4140625,
+              "dy": 35.90386962890625,
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "router": {
+          "name": "orthogonal",
+          "args": {
+            "padding": 8
+          }
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "EV_BTN_XX_DOWN [tick == 0]"
+              }
+            },
+            "position": {
+              "distance": 0.5970067066438751,
+              "offset": -52.93776061093514,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "root": {
+                "opacity": 1
+              },
+              "label": {
+                "text": "2"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "0c0c9612-c7ec-47a6-8c02-d387699a24f8",
+        "z": 108,
+        "vertices": [
+          {
+            "x": 519,
+            "y": 372
           }
         ],
         "attrs": {}
@@ -217,28 +477,23 @@
       {
         "type": "State",
         "position": {
-          "x": 445,
-          "y": 148
+          "x": 168,
+          "y": 24
         },
         "size": {
-          "width": 135.828125,
-          "height": 60.390625
+          "width": 243.84375,
+          "height": 60
         },
         "angle": 0,
         "fixedRatio": false,
         "embedable": true,
         "linkable": true,
-        "id": "db372094-acc6-467b-b44d-495606208445",
-        "z": 76,
-        "embeds": [
-          "075db3fa-db1c-40c8-aac2-fd477b7afe93"
-        ],
+        "id": "36b8548a-74b1-4925-ae23-291c03231ee6",
+        "z": 109,
+        "embeds": [],
         "attrs": {
           "name": {
-            "text": "ST_BTN_FALLING"
-          },
-          "specification": {
-            "text": "entry / tick--"
+            "text": "ST_BTN_XX_UP"
           }
         }
       },
@@ -272,17 +527,20 @@
           {
             "attrs": {
               "text": {
-                "text": "EV_BTN_UP [tick == 0]"
+                "text": "EV_BTN_XX_UP [tick == 0]"
               }
             },
             "position": {
-              "distance": 0.4724190915432541,
-              "offset": 36.80000070679994,
+              "distance": 0.819377908107675,
+              "offset": -94.9672973980416,
               "angle": 0
             }
           },
           {
             "attrs": {
+              "root": {
+                "opacity": 1
+              },
               "label": {
                 "text": "3"
               }
@@ -296,11 +554,11 @@
           }
         ],
         "id": "3e041492-2a9b-487d-9208-422ad039e14f",
-        "z": 77,
+        "z": 110,
         "vertices": [
           {
-            "x": 520,
-            "y": 68
+            "x": 408.5,
+            "y": 206
           }
         ],
         "attrs": {}
@@ -308,24 +566,15 @@
       {
         "type": "Transition",
         "source": {
-          "id": "db372094-acc6-467b-b44d-495606208445",
-          "anchor": {
-            "name": "topLeft",
-            "args": {
-              "dx": 82.7734375,
-              "dy": 64.90386962890625,
-              "rotate": true
-            }
-          },
-          "priority": true
+          "id": "b795c847-d129-4d70-9faa-f71216e6b172"
         },
         "target": {
-          "id": "db372094-acc6-467b-b44d-495606208445",
+          "id": "36b8548a-74b1-4925-ae23-291c03231ee6",
           "anchor": {
             "name": "topLeft",
             "args": {
-              "dx": 93.7734375,
-              "dy": 29.90386962890625,
+              "dx": 4.2109375,
+              "dy": 27,
               "rotate": true
             }
           },
@@ -344,178 +593,20 @@
           {
             "attrs": {
               "text": {
-                "text": "EV_BTN_DOWN [tick > 0]"
+                "text": "EV_BTN_XX_UP [tick == 0]"
               }
             },
             "position": {
-              "distance": 0.5490067503479058,
-              "offset": 29.407795883861485,
+              "distance": 0.5825904337980755,
+              "offset": -47.65843276694302,
               "angle": 0
             }
           },
           {
             "attrs": {
-              "label": {
-                "text": "2"
-              }
-            }
-          },
-          {
-            "attrs": {}
-          },
-          {
-            "attrs": {}
-          }
-        ],
-        "id": "075db3fa-db1c-40c8-aac2-fd477b7afe93",
-        "z": 77,
-        "vertices": [
-          {
-            "x": 578.7734375,
-            "y": 241
-          }
-        ],
-        "parent": "db372094-acc6-467b-b44d-495606208445",
-        "attrs": {}
-      },
-      {
-        "type": "State",
-        "position": {
-          "x": 168,
-          "y": 397
-        },
-        "size": {
-          "width": 243.84375,
-          "height": 60
-        },
-        "angle": 0,
-        "fixedRatio": false,
-        "embedable": true,
-        "linkable": true,
-        "id": "7a84f0da-87ce-4405-a2cf-11fd887330a4",
-        "z": 78,
-        "attrs": {
-          "name": {
-            "text": "ST_BTN_DOWN"
-          },
-          "specification": {
-            "text": "entry / tick = DEL_BTN_XX_MAX"
-          }
-        }
-      },
-      {
-        "type": "Transition",
-        "source": {
-          "id": "db372094-acc6-467b-b44d-495606208445",
-          "anchor": {
-            "name": "topLeft",
-            "args": {
-              "dx": 57.7734375,
-              "dy": 61.90386962890625,
-              "rotate": true
-            }
-          },
-          "priority": true
-        },
-        "target": {
-          "id": "7a84f0da-87ce-4405-a2cf-11fd887330a4",
-          "anchor": {
-            "name": "topLeft",
-            "args": {
-              "dx": 94.4140625,
-              "dy": 35.90386962890625,
-              "rotate": true
-            }
-          },
-          "priority": true
-        },
-        "router": {
-          "name": "orthogonal",
-          "args": {
-            "padding": 8
-          }
-        },
-        "connector": {
-          "name": "rounded"
-        },
-        "labels": [
-          {
-            "attrs": {
-              "text": {
-                "text": "EV_BTN_DOWN [tick == 0]"
-              }
-            },
-            "position": {
-              "distance": 0.39732003724449755,
-              "offset": -83.92315737714603,
-              "angle": 0
-            }
-          },
-          {
-            "attrs": {
-              "label": {
-                "text": "2"
-              }
-            }
-          },
-          {
-            "attrs": {}
-          },
-          {
-            "attrs": {}
-          }
-        ],
-        "id": "0c0c9612-c7ec-47a6-8c02-d387699a24f8",
-        "z": 79,
-        "vertices": [
-          {
-            "x": 502.77,
-            "y": 395
-          }
-        ],
-        "attrs": {}
-      },
-      {
-        "type": "Transition",
-        "source": {
-          "id": "7a84f0da-87ce-4405-a2cf-11fd887330a4"
-        },
-        "target": {
-          "id": "b795c847-d129-4d70-9faa-f71216e6b172",
-          "anchor": {
-            "name": "topLeft",
-            "args": {
-              "dx": 44.125,
-              "dy": 40.90386962890625,
-              "rotate": true
-            }
-          },
-          "priority": true
-        },
-        "router": {
-          "name": "orthogonal",
-          "args": {
-            "padding": 8
-          }
-        },
-        "connector": {
-          "name": "rounded"
-        },
-        "labels": [
-          {
-            "attrs": {
-              "text": {
-                "text": "EV_BTN_UP"
-              }
-            },
-            "position": {
-              "distance": 0.657525363482883,
-              "offset": 34.9631360182743,
-              "angle": 0
-            }
-          },
-          {
-            "attrs": {
+              "root": {
+                "opacity": 1
+              },
               "label": {
                 "text": "1"
               }
@@ -528,78 +619,19 @@
             "attrs": {}
           }
         ],
-        "id": "ee831f28-7ed9-4cbf-8fad-12876f782017",
-        "z": 79,
+        "id": "089b5f17-a0ab-48c4-9cbb-ae4eaf1e47a9",
+        "z": 110,
         "vertices": [
           {
-            "x": 189,
-            "y": 277.9
+            "x": 75,
+            "y": 58
           }
         ],
-        "attrs": {}
-      },
-      {
-        "type": "Transition",
-        "source": {
-          "id": "b795c847-d129-4d70-9faa-f71216e6b172"
-        },
-        "target": {
-          "id": "7a84f0da-87ce-4405-a2cf-11fd887330a4",
-          "anchor": {
-            "name": "topLeft",
-            "args": {
-              "dx": 3,
-              "dy": 31,
-              "rotate": true
-            }
-          },
-          "priority": true
-        },
-        "router": {
-          "name": "orthogonal",
-          "args": {
-            "padding": 8
+        "attrs": {
+          "line": {
+            "strokeWidth": 4
           }
-        },
-        "connector": {
-          "name": "rounded"
-        },
-        "labels": [
-          {
-            "attrs": {
-              "text": {
-                "text": "EV_BTN_DOWN [tick == 0]"
-              }
-            },
-            "position": {
-              "distance": 0.35420832079523423,
-              "offset": 88.40852355957031,
-              "angle": 0
-            }
-          },
-          {
-            "attrs": {
-              "label": {
-                "text": "3"
-              }
-            }
-          },
-          {
-            "attrs": {}
-          },
-          {
-            "attrs": {}
-          }
-        ],
-        "id": "b36738f4-43e5-4223-8d25-506bc0081263",
-        "z": 80,
-        "vertices": [
-          {
-            "x": 77.41,
-            "y": 353
-          }
-        ],
-        "attrs": {}
+        }
       },
       {
         "type": "Transition",
@@ -608,8 +640,8 @@
           "anchor": {
             "name": "topLeft",
             "args": {
-              "dx": 214.5,
-              "dy": 53,
+              "dx": 232,
+              "dy": 17.903867721557617,
               "rotate": true
             }
           },
@@ -620,8 +652,8 @@
           "anchor": {
             "name": "topLeft",
             "args": {
-              "dx": 8,
-              "dy": 40,
+              "dx": 75,
+              "dy": 0.1953125,
               "rotate": true
             }
           },
@@ -640,17 +672,20 @@
           {
             "attrs": {
               "text": {
-                "text": "EV_BTN_DOWN"
+                "text": "EV_BTN_XX_DOWN / tick = DEL_BTN_XX_MAX"
               }
             },
             "position": {
-              "distance": 0.30879638836255074,
-              "offset": 57.36517333984375,
+              "distance": 0.4362547722848479,
+              "offset": -44.13317299676967,
               "angle": 0
             }
           },
           {
             "attrs": {
+              "root": {
+                "opacity": 1
+              },
               "label": {
                 "text": "1"
               }
@@ -664,11 +699,11 @@
           }
         ],
         "id": "d7651357-0c97-42b4-a085-246042e097a2",
-        "z": 81,
+        "z": 110,
         "vertices": [
           {
-            "x": 364,
-            "y": 188
+            "x": 518,
+            "y": 64
           }
         ],
         "attrs": {}
@@ -676,8 +711,8 @@
       {
         "type": "Entry",
         "position": {
-          "x": 243,
-          "y": -53
+          "x": 282.421875,
+          "y": -32
         },
         "size": {
           "height": 15,
@@ -689,7 +724,7 @@
         "embedable": false,
         "linkable": true,
         "id": "a4d257fe-72cb-4334-9a1f-b5a8b4f886fb",
-        "z": 85,
+        "z": 114,
         "embeds": [
           "f70f632c-e54d-4002-9ec5-7baec620de10"
         ],
@@ -707,11 +742,11 @@
           "height": 15
         },
         "position": {
-          "x": 243,
-          "y": -38
+          "x": 282.421875,
+          "y": -17
         },
         "id": "f70f632c-e54d-4002-9ec5-7baec620de10",
-        "z": 86,
+        "z": 115,
         "parent": "a4d257fe-72cb-4334-9a1f-b5a8b4f886fb",
         "attrs": {
           "label": {
@@ -733,8 +768,8 @@
           "anchor": {
             "name": "topLeft",
             "args": {
-              "dx": 101,
-              "dy": 3,
+              "dx": 121,
+              "dy": 8.903867721557617,
               "rotate": true
             }
           },
@@ -756,6 +791,9 @@
           },
           {
             "attrs": {
+              "root": {
+                "opacity": 1
+              },
               "label": {
                 "text": "1"
               }
@@ -769,7 +807,7 @@
           }
         ],
         "id": "9b5ce41b-0116-46a8-a603-ea4119c6e5d7",
-        "z": 87,
+        "z": 116,
         "attrs": {}
       }
     ]
@@ -804,8 +842,8 @@
           "getters": false
         },
         "IdentifierSettings": {
-          "moduleName": "MyFirstStatechart",
-          "statemachinePrefix": "myFirstStatechart",
+          "moduleName": "SensorStatechart",
+          "statemachinePrefix": "sensorStatechart",
           "separator": "_",
           "headerFilenameExtension": "h",
           "sourceFilenameExtension": "c"
